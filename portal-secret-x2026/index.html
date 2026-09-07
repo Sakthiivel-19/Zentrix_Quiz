@@ -8,9 +8,11 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Quiz Admin</title>
+    <title>Zentrix Quiz - Admin Command Center</title>
 
-    <link rel="stylesheet" href="admin.css">
+    <base href="/portal-secret-x2026/">
+
+    <link rel="stylesheet" href="/portal-secret-x2026/portal.css">
 
 </head>
 
@@ -25,7 +27,7 @@
         <div class="login-card">
 
             <div class="brand">
-                QUIZ ADMIN
+                ⚡ ZENTRIX ADMIN
             </div>
 
             <h1>
@@ -33,7 +35,7 @@
             </h1>
 
             <p class="muted">
-                Sign in to manage quiz results.
+                Enter your administrative key to access quiz records and live statistics.
             </p>
 
 
@@ -48,6 +50,7 @@
                     type="text"
                     id="username"
                     placeholder="Enter username"
+                    autocomplete="username"
                 >
 
 
@@ -62,6 +65,7 @@
                         type="password"
                         id="password"
                         placeholder="Enter password"
+                        autocomplete="current-password"
                     >
 
                     <button
@@ -84,14 +88,11 @@
                     type="submit"
                     class="primary"
                 >
-                    Login
+                    Authenticate & Access →
                 </button>
 
 
             </form>
-
-
-           
 
         </div>
 
@@ -109,7 +110,7 @@
             <div>
 
                 <span class="brand small">
-                    QUIZ ADMIN
+                    ⚡ ZENTRIX ADMIN
                 </span>
 
                 <h1>
@@ -118,20 +119,23 @@
 
             </div>
 
+            <div class="topbar-actions">
 
-            <button
-                id="logoutBtn"
-                class="secondary"
-            >
-                Logout
-            </button>
+                <button
+                    id="clearTestDataBtn"
+                    class="secondary"
+                >
+                    🗑️ Clear Test Data
+                </button>
 
-            <button
-    id="clearTestDataBtn"
-    class="secondary"
->
-    Clear Test Data
-</button>
+                <button
+                    id="logoutBtn"
+                    class="secondary"
+                >
+                    🚪 Logout
+                </button>
+
+            </div>
 
         </header>
 
@@ -212,7 +216,7 @@
                     </h2>
 
                     <p>
-                        Quiz participant results
+                        Real-time submissions, scores, and integrity violation logs
                     </p>
 
                 </div>
@@ -299,7 +303,7 @@
             <div>
 
                 <span class="brand small">
-                    QUIZ ADMIN
+                    ⚡ ZENTRIX ADMIN
                 </span>
 
                 <h1>
@@ -444,7 +448,7 @@
 
 
 
-    <script src="admin.js"></script>
+    <script src="/portal-secret-x2026/portal.js"></script>
 
 
 </body>
