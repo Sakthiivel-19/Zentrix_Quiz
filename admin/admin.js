@@ -2,6 +2,10 @@
 // QUIZ ADMIN - JAVASCRIPT
 // ==========================================
 
+const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") && (window.location.port === "5500" || window.location.port === "8000" || window.location.port === "3000")
+    ? "http://127.0.0.1:5000"
+    : "";
+
 // Mock admin login credentials
 const ADMIN_USERNAME = "admin";
 const ADMIN_PASSWORD = "QuizAdmin@2026";
@@ -344,7 +348,7 @@ async function loadParticipants() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:5000/api/admin/participants"
+            `${API_BASE}/api/admin/participants`
         );
 
         if (!response.ok) {
@@ -730,7 +734,7 @@ async function displayQuestionResults(participantIndex) {
     try {
 
         const response = await fetch(
-            `http://127.0.0.1:5000/api/admin/participants/${encodeURIComponent(participant.id)}`
+            `${API_BASE}/api/admin/participants/${encodeURIComponent(participant.id)}`
         );
 
         if (!response.ok) {
@@ -912,7 +916,7 @@ document
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:5000/api/admin/clear-test-data",
+            `${API_BASE}/api/admin/clear-test-data`,
             {
                 method: "DELETE"
             }

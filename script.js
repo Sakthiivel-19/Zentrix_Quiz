@@ -14,8 +14,12 @@
  */
 
 // ==============================================================================
-// 1. QUESTIONS
+// 1. API CONFIGURATION & QUESTIONS
 // ==============================================================================
+
+const API_BASE = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") && (window.location.port === "5500" || window.location.port === "8000" || window.location.port === "3000")
+    ? "http://127.0.0.1:5000"
+    : "";
 
 // Questions will be loaded from the backend.
 // DO NOT put correct answers in this array.
@@ -477,7 +481,7 @@ async function loadQuestions() {
     try {
 
         const response =
-            await fetch("http://127.0.0.1:5000/api/questions");
+            await fetch(`${API_BASE}/api/questions`);
 
 
         if (!response.ok) {
@@ -1746,7 +1750,7 @@ async function finalizeSubmission(
 
         const response =
             await fetch(
-                "http://127.0.0.1:5000/api/submit",
+                `${API_BASE}/api/submit`,
                 {
                     method: "POST",
 
