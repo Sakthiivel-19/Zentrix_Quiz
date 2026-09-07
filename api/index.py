@@ -475,11 +475,31 @@ def submit_quiz():
 
 
 # ==============================================================================
+# ADMIN AUTHENTICATION HELPER
+# ==============================================================================
+
+ADMIN_SECRET_TOKEN = os.environ.get("ADMIN_SECRET_KEY") or "QuizAdmin@2026"
+
+
+def verify_admin(req):
+    token = req.headers.get("X-Admin-Token") or req.headers.get("Authorization")
+    if token and (token == ADMIN_SECRET_TOKEN or token == f"Bearer {ADMIN_SECRET_TOKEN}"):
+        return True
+    return False
+
+
+# ==============================================================================
 # ADMIN - GET ALL PARTICIPANTS
 # ==============================================================================
 
 @app.route("/api/admin/participants", methods=["GET"])
 def get_admin_participants():
+    if not verify_admin(request):
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized: Admin access only"
+        }), 401
+
     submissions = load_submissions()
     participants = []
 
@@ -511,6 +531,12 @@ def get_admin_participants():
 
 @app.route("/api/admin/participants/<participant_id>", methods=["GET"])
 def get_participant_details(participant_id):
+    if not verify_admin(request):
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized: Admin access only"
+        }), 401
+
     submissions = load_submissions()
     for submission in submissions:
         if str(submission.get("participantId")) == str(participant_id):
@@ -531,6 +557,12 @@ def get_participant_details(participant_id):
 
 @app.route("/api/admin/clear-test-data", methods=["DELETE"])
 def clear_test_data():
+    if not verify_admin(request):
+        return jsonify({
+            "success": False,
+            "message": "Unauthorized: Admin access only"
+        }), 401
+
     save_submissions([])
     return jsonify({
         "success": True,

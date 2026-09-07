@@ -348,7 +348,12 @@ async function loadParticipants() {
     try {
 
         const response = await fetch(
-            `${API_BASE}/api/admin/participants`
+            `${API_BASE}/api/admin/participants`,
+            {
+                headers: {
+                    "X-Admin-Token": ADMIN_PASSWORD
+                }
+            }
         );
 
         if (!response.ok) {
@@ -734,7 +739,12 @@ async function displayQuestionResults(participantIndex) {
     try {
 
         const response = await fetch(
-            `${API_BASE}/api/admin/participants/${encodeURIComponent(participant.id)}`
+            `${API_BASE}/api/admin/participants/${encodeURIComponent(participant.id)}`,
+            {
+                headers: {
+                    "X-Admin-Token": ADMIN_PASSWORD
+                }
+            }
         );
 
         if (!response.ok) {
@@ -918,7 +928,10 @@ document
         const response = await fetch(
             `${API_BASE}/api/admin/clear-test-data`,
             {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "X-Admin-Token": ADMIN_PASSWORD
+                }
             }
         );
 

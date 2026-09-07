@@ -16,8 +16,16 @@
       "dest": "/api/index.py"
     },
     {
-      "src": "/admin",
-      "dest": "/admin/admin.html"
+      "src": "/portal-secret-x2026",
+      "dest": "/portal-secret-x2026/index.html"
+    },
+    {
+      "src": "/portal-secret-x2026/(.*)",
+      "dest": "/portal-secret-x2026/$1"
+    },
+    {
+      "src": "/admin(.*)",
+      "dest": "/login.html"
     },
     {
       "src": "/instructions",
