@@ -455,7 +455,7 @@ loginForm.addEventListener("submit", function(event) {
 
 
     if (
-        username === ADMIN_USERNAME &&
+        username.toLowerCase() === ADMIN_USERNAME.toLowerCase() &&
         password === ADMIN_PASSWORD
     ) {
 
@@ -505,11 +505,18 @@ document
 
 function showDashboard() {
 
-    document.getElementById("loginView").hidden = true;
+    const loginView = document.getElementById("loginView");
+    const dashboardView = document.getElementById("dashboardView");
+    const detailsView = document.getElementById("detailsView");
 
-    document.getElementById("dashboardView").hidden = false;
+    loginView.hidden = true;
+    loginView.style.display = "none";
 
-    document.getElementById("detailsView").hidden = true;
+    dashboardView.hidden = false;
+    dashboardView.style.display = "block";
+
+    detailsView.hidden = true;
+    detailsView.style.display = "none";
 
     loadParticipants();
 }
@@ -662,14 +669,14 @@ function viewParticipant(index) {
         participants[index];
 
 
-    document.getElementById(
-        "dashboardView"
-    ).hidden = true;
+    const dashboardView = document.getElementById("dashboardView");
+    const detailsView = document.getElementById("detailsView");
 
+    dashboardView.hidden = true;
+    dashboardView.style.display = "none";
 
-    document.getElementById(
-        "detailsView"
-    ).hidden = false;
+    detailsView.hidden = false;
+    detailsView.style.display = "block";
 
 
     document.getElementById(
@@ -862,14 +869,14 @@ document
     .getElementById("backBtn")
     .addEventListener("click", function() {
 
-        document.getElementById(
-            "dashboardView"
-        ).hidden = false;
+        const dashboardView = document.getElementById("dashboardView");
+        const detailsView = document.getElementById("detailsView");
 
+        dashboardView.hidden = false;
+        dashboardView.style.display = "block";
 
-        document.getElementById(
-            "detailsView"
-        ).hidden = true;
+        detailsView.hidden = true;
+        detailsView.style.display = "none";
 
     });
 
@@ -882,19 +889,18 @@ document
     .getElementById("logoutBtn")
     .addEventListener("click", function() {
 
-        document.getElementById(
-            "loginView"
-        ).hidden = false;
+        const loginView = document.getElementById("loginView");
+        const dashboardView = document.getElementById("dashboardView");
+        const detailsView = document.getElementById("detailsView");
 
+        loginView.hidden = false;
+        loginView.style.display = "flex";
 
-        document.getElementById(
-            "dashboardView"
-        ).hidden = true;
+        dashboardView.hidden = true;
+        dashboardView.style.display = "none";
 
-
-        document.getElementById(
-            "detailsView"
-        ).hidden = true;
+        detailsView.hidden = true;
+        detailsView.style.display = "none";
 
 
         document.getElementById(

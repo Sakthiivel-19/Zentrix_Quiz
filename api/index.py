@@ -7,7 +7,7 @@ import urllib.parse
 import tempfile
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, allow_headers=["Content-Type", "Authorization", "X-Admin-Token", "x-admin-token"], methods=["GET", "POST", "DELETE", "OPTIONS"])
 
 # ==============================================================================
 # SUBMISSION STORAGE (Supports Cloud Upstash / KV / /tmp / local fallback)
