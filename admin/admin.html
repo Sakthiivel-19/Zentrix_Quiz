@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ADMIN LOGIN -->
+
+    <section id="loginView" class="login-view">
+
+        <div class="login-card">
+
+            <div class="brand">
+                QUIZ ADMIN
+            </div>
+
+            <h1>
+                Administrator Login
+            </h1>
+
+            <p class="muted">
+                Sign in to manage quiz results.
+            </p>
+
+
+            <form id="loginForm">
+
+
+                <label for="username">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                >
+
+
+                <label for="password">
+                    Password
+                </label>
+
+
+                <div class="password-row">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+
+                <p
+                    id="loginError"
+                    class="error"
+                ></p>
+
+
+                <button
+                    type="submit"
+                    class="primary"
+                >
+                    Login
+                </button>
+
+
+            </form>
+
+
+           
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ADMIN DASHBOARD -->
+
+    <section id="dashboardView" hidden>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="brand small">
+                    QUIZ ADMIN
+                </span>
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+            </div>
+
+
+            <button
+                id="logoutBtn"
+                class="secondary"
+            >
+                Logout
+            </button>
+
+            <button
+    id="clearTestDataBtn"
+    class="secondary"
+>
+    Clear Test Data
+</button>
+
+        </header>
+
+
+
+        <!-- SUMMARY CARDS -->
+
+        <div class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <span>
+                    Total Participants
+                </span>
+
+                <strong id="totalParticipants">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Submitted
+                </span>
+
+                <strong id="submitted">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Not Submitted
+                </span>
+
+                <strong id="notSubmitted">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Highest Score
+                </span>
+
+                <strong id="highestScore">
+                    0/100
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- PARTICIPANT RESULTS -->
+
+        <div class="panel">
+
+
+            <div class="panel-title">
+
+                <div>
+
+                    <h2>
+                        Participant Results
+                    </h2>
+
+                    <p>
+                        Quiz participant results
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrap">
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Participant Name
+                            </th>
+
+                            <th>
+                                Participant ID
+                            </th>
+
+                            <th>
+                                Score /100
+                            </th>
+
+                            <th>
+                                Time Taken
+                            </th>
+
+                            <th>
+                                Correct Answers
+                            </th>
+
+                            <th>
+                                Wrong Answers
+                            </th>
+
+                            <th>
+                                Tab-Switch Violations
+                            </th>
+
+                            <th>
+                                Submission Status
+                            </th>
+
+                            <th>
+                                View Details
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="participantsBody">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- PARTICIPANT DETAILS -->
+
+    <section id="detailsView" hidden>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="brand small">
+                    QUIZ ADMIN
+                </span>
+
+                <h1>
+                    Participant Details
+                </h1>
+
+            </div>
+
+
+            <button
+                id="backBtn"
+                class="secondary"
+            >
+                ← Back to Dashboard
+            </button>
+
+        </header>
+
+
+
+        <!-- PARTICIPANT INFORMATION -->
+
+        <div class="profile-grid">
+
+
+            <div>
+
+                <span>
+                    Name
+                </span>
+
+                <strong id="detailName">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Participant ID
+                </span>
+
+                <strong id="detailId">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Score
+                </span>
+
+                <strong id="detailScore">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Time Taken
+                </span>
+
+                <strong id="detailTime">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Correct Answers
+                </span>
+
+                <strong id="detailCorrect">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Wrong Answers
+                </span>
+
+                <strong id="detailWrong">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Tab-Switch Violations
+                </span>
+
+                <strong id="detailViolations">
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Submission Status
+                </span>
+
+                <strong id="detailStatus">
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- QUESTION RESULTS -->
+
+        <div class="panel">
+
+            <h2>
+                Question-wise Results
+            </h2>
+
+            <div id="questionResults">
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <script src="admin.js"></script>
+
+
+</body>
+
+</html>

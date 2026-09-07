@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Tech Quiz 2026 - Quiz Assessment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="quiz-wrapper">
+
+  <!-- ========================================================================
+       TOP STICKY NAVIGATION BAR
+       ======================================================================== -->
+  <header class="app-header">
+    <div class="header-container">
+      <!-- Brand & Title -->
+      <div class="brand">
+        <div class="brand-icon">Q</div>
+        <div class="brand-info">
+          <h1>College Tech Quiz 2026</h1>
+          <span>Participant Assessment Portal</span>
+        </div>
+      </div>
+
+      <!-- Center: 15-Minute Countdown Timer -->
+      <div id="timerPill" class="timer-pill" title="Time remaining before automatic submission">
+        <span class="timer-icon">⏳</span>
+        <span id="timerDisplay">15:00</span>
+      </div>
+
+      <!-- Right: Participant Details & Tab Violation Counter -->
+      <div class="header-meta">
+        <div class="participant-pill" title="Logged in Participant">
+          👤 <strong id="headerParticipantName">Participant</strong>
+          <span style="opacity: 0.7;">(<span id="headerParticipantId">ID</span>)</span>
+        </div>
+
+        <div id="violationCounterBadge" class="violation-pill" title="Tab switch violation count">
+          ⚠️ Violations: <span id="violationCountNumber">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN QUIZ INTERFACE (QUESTION PANEL & SIDEBAR PALETTE)
+       ======================================================================== -->
+  <main id="quizMainContainer" class="quiz-main-content">
+    
+    <!-- Left Column: Active Question Panel -->
+    <section class="question-panel" aria-label="Current Question">
+      <div class="question-meta-bar">
+        <span id="questionNumberBadge" class="question-badge">Question 1 of 20</span>
+        <span class="points-badge">+5 Points • Single Choice</span>
+      </div>
+
+      <h2 id="questionText" class="question-text">
+        Loading question...
+      </h2>
+
+      <!-- 4 Option Choices (A, B, C, D) -->
+      <div id="optionsContainer" class="options-list" role="radiogroup" aria-labelledby="questionText">
+        <!-- Dynamically rendered options will appear here -->
+      </div>
+
+      <!-- Question Action Buttons -->
+      <div class="quiz-controls-bar">
+        <div class="nav-actions-left">
+          <button type="button" id="prevBtn" class="btn btn-secondary">
+            ← Previous
+          </button>
+          <button type="button" id="clearSelectionBtn" class="btn btn-outline" title="Clear chosen answer for this question">
+            Clear Choice
+          </button>
+        </div>
+
+        <div class="nav-actions-right">
+          <button type="button" id="nextBtn" class="btn btn-primary">
+            Next Question →
+          </button>
+          <button type="button" id="submitQuizBtn" class="btn btn-success">
+            Submit Quiz ✓
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Question Navigation Grid Palette -->
+    <aside class="navigation-palette" aria-label="Question Navigation">
+      <div class="palette-header">
+        <h3>Question Palette</h3>
+        <div id="answeredCountDisplay" class="palette-stats">0 of 20 Answered</div>
+      </div>
+
+      <!-- 20 Question Grid Buttons -->
+      <div id="questionGrid" class="question-grid">
+        <!-- Buttons 1 to 20 dynamically populated -->
+      </div>
+
+      <!-- Palette Legend -->
+      <div class="palette-legend">
+        <div class="legend-item">
+          <span class="legend-dot current"></span>
+          <span>Current Question</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot answered"></span>
+          <span>Answered</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot unanswered"></span>
+          <span>Unanswered</span>
+        </div>
+      </div>
+
+      <button type="button" id="sidebarSubmitBtn" class="btn btn-success btn-block">
+        Finish & Submit Quiz
+      </button>
+    </aside>
+
+  </main>
+
+  <!-- ========================================================================
+       POST-SUBMISSION RESULTS & SUMMARY SCREEN
+       ======================================================================== -->
+  <div id="resultsContainer" class="results-container">
+    <div class="card">
+      <div class="card-header" style="background: var(--slate-50);">
+        <div class="modal-icon success-icon">✓</div>
+        <h2>Quiz Submitted Successfully</h2>
+        <p id="resStatus" style="font-weight: 600; color: var(--success); margin-top: 0.35rem;">
+          Submitted by Participant
+        </p>
+      </div>
+
+      <div class="card-body">
+        <div class="participant-banner" style="margin-bottom: 1.5rem;">
+          <div><strong>Participant:</strong> <span id="resParticipantName">---</span></div>
+          <div><strong>Participant ID:</strong> <span id="resParticipantId">---</span></div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="result-stat-grid">
+          <div class="result-stat-box">
+            <div id="resScore" class="val">-- / 100</div>
+            <div class="lbl">Score Preview</div>
+          </div>
+          <div class="result-stat-box">
+            <div id="resAttempted" class="val">-- / 20</div>
+            <div class="lbl">Attempted</div>
+          </div>
+          <div class="result-stat-box">
+            <div id="resTimeTaken" class="val">--</div>
+            <div class="lbl">Time Taken</div>
+          </div>
+          <div class="result-stat-box">
+            <div id="resViolations" class="val" style="color: var(--danger);">0</div>
+            <div class="lbl">Violations</div>
+          </div>
+        </div>
+
+        <!-- Backend Developer Notes -->
+        <div class="backend-info-box">
+          <strong>🔌 Ready for Flask Backend Integration:</strong>
+          <p style="margin-top: 0.25rem;">
+            All responses, time metrics, and violation counters have been compiled into a clean JavaScript object ready for an HTTP POST request to your Flask API endpoint.
+          </p>
+        </div>
+
+        <!-- Raw JSON Payload Viewer -->
+        <details class="json-preview-container">
+          <summary>View Structured JSON Data Payload (for Backend Developer)</summary>
+          <pre id="jsonPayloadDisplay" class="json-code-box"></pre>
+        </details>
+      </div>
+
+      <div class="card-footer" style="justify-content: center;">
+        <a href="login.html" class="btn btn-secondary">
+          ← Return to Login
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: TAB-SWITCH VIOLATION WARNING MODAL
+       ======================================================================== -->
+  <div id="violationModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="violationModalTitle">
+    <div class="modal-card">
+      <div class="modal-body">
+        <div class="modal-icon warning-icon">⚠️</div>
+        <h3 id="violationModalTitle">Warning: Tab Switch Detected!</h3>
+        <p>
+          You navigated away from the quiz tab. This event has been logged and recorded against your participant session.
+        </p>
+        
+        <div class="modal-stats-box">
+          <div>
+            <div id="modalViolationCount" class="modal-stat-val" style="color: var(--danger);">1</div>
+            <div class="modal-stat-lbl">Recorded Violations</div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--slate-700);">
+          Please remain on this browser tab until you have submitted your quiz. Multiple violations are logged in your final submission record.
+        </p>
+
+        <div class="modal-actions">
+          <button type="button" id="dismissViolationBtn" class="btn btn-primary btn-block">
+            I Understand & Resume Quiz
+          </button>
+        </div>
+
+        <p class="disclaimer-note">
+          Notice: Tab-switch detection monitors tab visibility changes on this browser. It does not claim to prevent all external cheating methods or detect secondary devices.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: CONFIRM QUIZ SUBMISSION MODAL
+       ======================================================================== -->
+  <div id="submitModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="submitModalTitle">
+    <div class="modal-card">
+      <div class="modal-body">
+        <div class="modal-icon submit-icon">📝</div>
+        <h3 id="submitModalTitle">Confirm Submission</h3>
+        <p>
+          Are you sure you want to finalize and submit your quiz attempt?
+        </p>
+
+        <div class="modal-stats-box">
+          <div>
+            <div id="modalAnsweredStat" class="modal-stat-val" style="color: var(--success);">0 / 20</div>
+            <div class="modal-stat-lbl">Questions Answered</div>
+          </div>
+          <div>
+            <div id="modalUnansweredStat" class="modal-stat-val" style="color: var(--warning);">20</div>
+            <div class="modal-stat-lbl">Remaining Unanswered</div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--slate-600);">
+          Once submitted, your attempt is final and your answers cannot be altered.
+        </p>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelSubmitBtn" class="btn btn-secondary">
+            Return to Quiz
+          </button>
+          <button type="button" id="confirmSubmitBtn" class="btn btn-success">
+            Yes, Submit Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

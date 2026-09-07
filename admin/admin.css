@@ -1,0 +1,384 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================
+   LOGIN PAGE
+========================= */
+
+.login-view {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: #eef4ff;
+}
+
+.login-card {
+    width: min(430px, 100%);
+    background: white;
+    border: 1px solid #e4e9f2;
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 20px 55px rgba(25, 45, 80, 0.10);
+}
+
+.brand {
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.login-card h1 {
+    margin: 14px 0 8px;
+    font-size: 30px;
+}
+
+.muted {
+    color: #718096;
+}
+
+.login-card label {
+    display: block;
+    margin: 20px 0 7px;
+    font-weight: 600;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #cfd7e4;
+    border-radius: 10px;
+    outline: none;
+}
+
+.login-card input:focus {
+    border-color: #5577d8;
+}
+
+.password-row {
+    display: flex;
+    gap: 8px;
+}
+
+.password-row input {
+    flex: 1;
+}
+
+.password-row button {
+    border: 1px solid #d2dae7;
+    background: white;
+    border-radius: 9px;
+    padding: 0 14px;
+}
+
+.primary {
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 13px;
+    background: #2f5bea;
+    color: white;
+    font-weight: 700;
+}
+
+.error {
+    min-height: 20px;
+    color: #c62828;
+}
+
+.demo-note {
+    font-size: 12px;
+    color: #718096;
+    margin-top: 20px;
+}
+
+
+/* =========================
+   TOP HEADER
+========================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    padding: 28px 5%;
+
+    background: white;
+    border-bottom: 1px solid #e6ebf2;
+}
+
+.brand.small {
+    font-size: 12px;
+    color: #5b6b84;
+}
+
+.topbar h1 {
+    margin: 5px 0 0;
+    font-size: 28px;
+}
+
+.secondary {
+    border: 1px solid #d2dae7;
+    background: white;
+    border-radius: 9px;
+    padding: 10px 14px;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+
+    padding: 28px 5%;
+}
+
+.summary-card {
+    background: white;
+    border: 1px solid #e5eaf2;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.summary-card span {
+    color: #718096;
+    font-size: 13px;
+}
+
+.summary-card strong {
+    display: block;
+    font-size: 28px;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   PANELS
+========================= */
+
+.panel {
+    background: white;
+    border: 1px solid #e5eaf2;
+    border-radius: 14px;
+
+    margin: 0 5% 30px;
+    padding: 24px;
+}
+
+.panel h2 {
+    margin-top: 0;
+}
+
+.panel-title {
+    margin-bottom: 18px;
+}
+
+.panel-title p {
+    color: #718096;
+}
+
+
+/* =========================
+   PARTICIPANT TABLE
+========================= */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1000px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 14px 12px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+th {
+    font-size: 12px;
+    color: #66758c;
+    background: #fafbfc;
+}
+
+.details-btn {
+    border: 0;
+    background: #edf2ff;
+    color: #2f5bea;
+    border-radius: 8px;
+    padding: 8px 11px;
+    font-weight: 700;
+}
+
+.status {
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.status.submitted {
+    background: #e7f7ed;
+    color: #187642;
+}
+
+.status.pending {
+    background: #fff3df;
+    color: #9a6200;
+}
+
+
+/* =========================
+   PARTICIPANT DETAILS
+========================= */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+
+    padding: 28px 5%;
+}
+
+.profile-grid > div {
+    background: white;
+    border: 1px solid #e5eaf2;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.profile-grid span {
+    display: block;
+    color: #718096;
+    font-size: 13px;
+}
+
+.profile-grid strong {
+    display: block;
+    margin-top: 7px;
+}
+
+
+/* =========================
+   QUESTION CARDS
+========================= */
+
+.question-card {
+    border: 1px solid #e3e8ef;
+    border-left: 5px solid #9aa7ba;
+
+    border-radius: 12px;
+    padding: 18px;
+    margin: 16px 0;
+}
+
+.question-card.correct {
+    border-left-color: #2e9b5b;
+    background: #fbfffc;
+}
+
+.question-card.wrong {
+    border-left-color: #d55353;
+    background: #fffafa;
+}
+
+.question-head {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+}
+
+.correct .result {
+    color: #187642;
+}
+
+.wrong .result {
+    color: #c03939;
+}
+
+.question-card h3 {
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.options > div {
+    padding: 8px 10px;
+    border-radius: 7px;
+    margin: 5px 0;
+    background: #f6f8fb;
+}
+
+.options .correct-option {
+    outline: 2px solid #8ed0a6;
+    background: #eaf8ef;
+}
+
+.options .selected-wrong {
+    outline: 2px solid #e8a1a1;
+    background: #fff0f0;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 850px) {
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .profile-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .summary-grid,
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+
+    .login-card {
+        padding: 26px;
+    }
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Tech Quiz 2026 - Instructions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="card instructions-card">
+      <div class="card-header">
+        <div class="brand-icon" style="margin: 0 auto 0.75rem auto; width: 44px; height: 44px; font-size: 1.3rem;">📋</div>
+        <h2>Quiz Instructions & Rules</h2>
+        <p>Please review the rules carefully before starting your attempt.</p>
+      </div>
+
+      <div class="card-body">
+        <!-- Participant Greeting Banner -->
+        <div class="participant-banner">
+          <div>
+            <strong>Participant:</strong> <span id="participantNameDisplay">Loading...</span>
+          </div>
+          <div>
+            <strong>ID / Roll No:</strong> <span id="participantIdDisplay">Loading...</span>
+          </div>
+        </div>
+
+        <!-- Metric Boxes -->
+        <div class="rules-grid">
+          <div class="rule-metric-box">
+            <div class="metric-val">20</div>
+            <div class="metric-lbl">Total Questions</div>
+          </div>
+          <div class="rule-metric-box">
+            <div class="metric-val">15:00</div>
+            <div class="metric-lbl">Minutes Time Limit</div>
+          </div>
+          <div class="rule-metric-box">
+            <div class="metric-val">+5</div>
+            <div class="metric-lbl">Per Correct Answer</div>
+          </div>
+          <div class="rule-metric-box">
+            <div class="metric-val">0</div>
+            <div class="metric-lbl">Negative Marking</div>
+          </div>
+          <div class="rule-metric-box">
+            <div class="metric-val">100</div>
+            <div class="metric-lbl">Maximum Score</div>
+          </div>
+        </div>
+
+        <!-- Detailed Rules List -->
+        <ul class="instruction-list">
+          <li class="instruction-item">
+            <span class="item-icon">⏱️</span>
+            <div class="item-content">
+              <h4>Strict 15-Minute Timer</h4>
+              <p>The countdown timer starts the moment you click "Start Quiz". If the timer reaches 00:00, your quiz will automatically be submitted with your current selections.</p>
+            </div>
+          </li>
+
+          <li class="instruction-item warning-item">
+            <span class="item-icon">⚠️</span>
+            <div class="item-content">
+              <h4>Tab Switching Detection</h4>
+              <p>Tab switching is actively detected and recorded. Navigating away from the quiz tab to other browser tabs or windows will trigger a violation counter and prompt a warning alert.</p>
+            </div>
+          </li>
+
+          <li class="instruction-item warning-item">
+            <span class="item-icon">🔄</span>
+            <div class="item-content">
+              <h4>Leaving / Refreshing Warning</h4>
+              <p>Reloading the page, closing the tab, or navigating backward will trigger a browser warning. Please avoid refreshing during your test attempt.</p>
+            </div>
+          </li>
+
+          <li class="instruction-item danger-item">
+            <span class="item-icon">🔒</span>
+            <div class="item-content">
+              <h4>One-Time Submission</h4>
+              <p>Once you click "Submit Quiz" and confirm, your attempt is finalized and completed. You will not be able to re-take or modify answers.</p>
+            </div>
+          </li>
+
+          <li class="instruction-item">
+            <span class="item-icon">🧭</span>
+            <div class="item-content">
+              <h4>Question Navigation</h4>
+              <p>You can freely navigate between all 20 questions using the Previous/Next buttons or the question grid palette. Only one option (A, B, C, or D) can be chosen per question.</p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Checkbox Acknowledgment -->
+        <div class="acknowledgement-box">
+          <input type="checkbox" id="acknowledgeCheck">
+          <label for="acknowledgeCheck">
+            I have read, understood, and agree to adhere to all the quiz rules and monitoring guidelines.
+          </label>
+        </div>
+
+        <button type="button" id="startQuizBtn" class="btn btn-primary btn-block" style="padding: 0.95rem; font-size: 1.05rem;" disabled>
+          🚀 Start Quiz Now
+        </button>
+      </div>
+
+      <div class="card-footer">
+        <a href="login.html" class="btn btn-outline" style="font-size: 0.85rem;">
+          ← Switch Participant
+        </a>
+        <span style="font-size: 0.8rem; color: var(--slate-500);">
+          Ensure a stable internet connection before beginning.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
