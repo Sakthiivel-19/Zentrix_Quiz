@@ -22,38 +22,48 @@
 
         <form id="loginForm" novalidate>
           <div class="form-group">
-            <label for="participantName">Participant Full Name</label>
-            <div class="input-wrapper">
-              <span class="input-icon">👤</span>
-              <input 
-                type="text" 
-                id="participantName" 
-                class="form-input" 
-                placeholder="e.g., Alex Johnson" 
-                autocomplete="name" 
-                required
-              >
-            </div>
-            <span class="input-help">Enter your name as registered with the college event.</span>
-          </div>
-
-          <div class="form-group">
-            <label for="participantId">Participant ID / Roll Number</label>
+            <label for="participantId">Participant ID</label>
             <div class="input-wrapper">
               <span class="input-icon">🆔</span>
               <input 
                 type="text" 
                 id="participantId" 
                 class="form-input" 
-                placeholder="e.g., TECH-2026-042" 
-                autocomplete="off" 
+                placeholder="e.g., ZENTRIX001" 
+                autocomplete="username" 
                 required
               >
             </div>
-            <span class="input-help">Provide your allocated ID or college roll number.</span>
+            <span class="input-help">Enter your assigned ID (e.g., ZENTRIX001 to ZENTRIX020).</span>
           </div>
 
-          <button type="submit" id="loginBtn" class="btn btn-primary btn-block" style="padding: 0.95rem; font-size: 1.05rem;">
+          <div class="form-group">
+            <label for="participantPassword">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🔒</span>
+              <input 
+                type="password" 
+                id="participantPassword" 
+                class="form-input" 
+                placeholder="Enter password" 
+                autocomplete="current-password" 
+                required
+                style="padding-right: 2.75rem;"
+              >
+              <button 
+                type="button" 
+                id="toggleParticipantPassword" 
+                class="password-toggle-btn"
+                aria-label="Toggle password visibility"
+                style="position: absolute; right: 0.75rem; background: none; border: none; cursor: pointer; color: var(--slate-400); font-size: 1.1rem; padding: 0.25rem; display: flex; align-items: center;"
+              >
+                👁️
+              </button>
+            </div>
+            <span class="input-help">Enter your unique participant password.</span>
+          </div>
+
+          <button type="submit" id="loginBtn" class="btn btn-primary btn-block" style="padding: 0.95rem; font-size: 1.05rem; margin-top: 1.5rem;">
             Proceed to Instructions →
           </button>
         </form>

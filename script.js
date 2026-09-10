@@ -25,6 +25,33 @@ const API_BASE = (window.location.hostname === "localhost" || window.location.ho
 // DO NOT put correct answers in this array.
 let questions = [];
 
+// ==============================================================================
+// 1.5. PARTICIPANT CREDENTIALS (ZENTRIX001 - ZENTRIX020)
+// ==============================================================================
+
+const PARTICIPANT_CREDENTIALS = {
+    "ZENTRIX001": "Nova#4821",
+    "ZENTRIX002": "Byte@9362",
+    "ZENTRIX003": "Apex#7154",
+    "ZENTRIX004": "Volt@2849",
+    "ZENTRIX005": "Pixel#6317",
+    "ZENTRIX006": "Pulse@5193",
+    "ZENTRIX007": "Cyber#8426",
+    "ZENTRIX008": "Logic@3751",
+    "ZENTRIX009": "Orbit#9264",
+    "ZENTRIX010": "Spark@4185",
+    "ZENTRIX011": "Vector#7392",
+    "ZENTRIX012": "Quantum@8514",
+    "ZENTRIX013": "Matrix#2679",
+    "ZENTRIX014": "Flux@9431",
+    "ZENTRIX015": "Nexus#3816",
+    "ZENTRIX016": "Echo@6248",
+    "ZENTRIX017": "Prism#5937",
+    "ZENTRIX018": "Vortex@1863",
+    "ZENTRIX019": "Zenith#7425",
+    "ZENTRIX020": "Helix@3194"
+};
+
 
 // ==============================================================================
 // 2. QUIZ CONFIGURATION
@@ -138,18 +165,35 @@ function initLogin() {
     const loginForm =
         document.getElementById("loginForm");
 
-    const nameInput =
-        document.getElementById("participantName");
-
     const idInput =
         document.getElementById("participantId");
+
+    const passwordInput =
+        document.getElementById("participantPassword");
 
     const alertBox =
         document.getElementById("loginAlert");
 
+    const togglePasswordBtn =
+        document.getElementById("toggleParticipantPassword");
+
 
     if (!loginForm) {
         return;
+    }
+
+
+    // Toggle password visibility
+    if (togglePasswordBtn && passwordInput) {
+        togglePasswordBtn.addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordBtn.textContent = "🙈";
+            } else {
+                passwordInput.type = "password";
+                togglePasswordBtn.textContent = "👁️";
+            }
+        });
     }
 
 
@@ -161,59 +205,51 @@ function initLogin() {
 
         e.preventDefault();
 
-
-        const name =
-            nameInput ? nameInput.value.trim() : "";
-
         const id =
-            idInput ? idInput.value.trim() : "";
+            idInput ? idInput.value.trim().toUpperCase() : "";
+
+        const password =
+            passwordInput ? passwordInput.value.trim() : "";
 
 
-        // Validate both fields
-        if (!name && !id) {
-
-            showLoginError(
-                "Please enter both Participant Name and Participant ID."
-            );
-
-            if (nameInput) {
-                nameInput.focus();
-            }
-
-            return;
-        }
-
-
-        if (!name) {
-
-            showLoginError(
-                "Participant Name is required."
-            );
-
-            if (nameInput) {
-                nameInput.focus();
-            }
-
-            return;
-        }
-
-
+        // Validate ID
         if (!id) {
-
-            showLoginError(
-                "Participant ID is required."
-            );
-
+            showLoginError("Participant ID is required (e.g., ZENTRIX001).");
             if (idInput) {
                 idInput.focus();
             }
+            return;
+        }
 
+        // Validate Password
+        if (!password) {
+            showLoginError("Password is required.");
+            if (passwordInput) {
+                passwordInput.focus();
+            }
+            return;
+        }
+
+        // Validate against authorized credentials
+        if (!PARTICIPANT_CREDENTIALS[id]) {
+            showLoginError("Invalid Participant ID. Please check your assigned ID.");
+            if (idInput) {
+                idInput.focus();
+            }
+            return;
+        }
+
+        if (PARTICIPANT_CREDENTIALS[id] !== password) {
+            showLoginError("Invalid Password for " + id + ". Please try again.");
+            if (passwordInput) {
+                passwordInput.focus();
+            }
             return;
         }
 
 
         // Save participant details
-        saveStoredParticipant(name, id);
+        saveStoredParticipant(id, id);
 
 
         // Go to instructions
@@ -229,12 +265,13 @@ function initLogin() {
             alertBox.textContent = message;
 
             alertBox.classList.add("active");
+            alertBox.style.display = "block";
         }
     }
 
 
     // Clear error while typing
-    [nameInput, idInput].forEach((input) => {
+    [idInput, passwordInput].forEach((input) => {
 
         if (!input) {
             return;
@@ -245,6 +282,7 @@ function initLogin() {
             if (alertBox) {
 
                 alertBox.classList.remove("active");
+                alertBox.style.display = "none";
             }
         });
     });
@@ -291,7 +329,7 @@ function initInstructions() {
 
 
     // Make sure participant logged in
-    if (!participant.name || !participant.id) {
+    if (!participant.id) {
 
         window.location.href =
             "login.html";
@@ -300,18 +338,13 @@ function initInstructions() {
     }
 
 
-    // Display participant information
-    if (nameDisplay) {
-
-        nameDisplay.textContent =
-            participant.name;
+    // Display participant ID
+    if (idDisplay) {
+        idDisplay.textContent = participant.id;
     }
 
-
-    if (idDisplay) {
-
-        idDisplay.textContent =
-            participant.id;
+    if (nameDisplay) {
+        nameDisplay.textContent = participant.id;
     }
 
 

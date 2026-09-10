@@ -379,6 +379,63 @@ What does this query return?""",
 
 
 # ==============================================================================
+# PARTICIPANT CREDENTIALS (ZENTRIX001 - ZENTRIX020)
+# ==============================================================================
+
+PARTICIPANT_CREDENTIALS = {
+    "ZENTRIX001": "Nova#4821",
+    "ZENTRIX002": "Byte@9362",
+    "ZENTRIX003": "Apex#7154",
+    "ZENTRIX004": "Volt@2849",
+    "ZENTRIX005": "Pixel#6317",
+    "ZENTRIX006": "Pulse@5193",
+    "ZENTRIX007": "Cyber#8426",
+    "ZENTRIX008": "Logic@3751",
+    "ZENTRIX009": "Orbit#9264",
+    "ZENTRIX010": "Spark@4185",
+    "ZENTRIX011": "Vector#7392",
+    "ZENTRIX012": "Quantum@8514",
+    "ZENTRIX013": "Matrix#2679",
+    "ZENTRIX014": "Flux@9431",
+    "ZENTRIX015": "Nexus#3816",
+    "ZENTRIX016": "Echo@6248",
+    "ZENTRIX017": "Prism#5937",
+    "ZENTRIX018": "Vortex@1863",
+    "ZENTRIX019": "Zenith#7425",
+    "ZENTRIX020": "Helix@3194"
+}
+
+
+# ==============================================================================
+# PARTICIPANT AUTHENTICATION
+# ==============================================================================
+
+@app.route("/api/login", methods=["POST"])
+def participant_login():
+    data = request.get_json(silent=True) or {}
+    participant_id = str(data.get("participantId", "")).strip().upper()
+    password = str(data.get("password", "")).strip()
+
+    if not participant_id or not password:
+        return jsonify({
+            "success": False,
+            "message": "Participant ID and Password are required."
+        }), 400
+
+    if participant_id in PARTICIPANT_CREDENTIALS and PARTICIPANT_CREDENTIALS[participant_id] == password:
+        return jsonify({
+            "success": True,
+            "participantId": participant_id,
+            "message": "Authentication successful"
+        })
+    else:
+        return jsonify({
+            "success": False,
+            "message": "Invalid Participant ID or Password."
+        }), 401
+
+
+# ==============================================================================
 # GET QUESTIONS
 # ==============================================================================
 
